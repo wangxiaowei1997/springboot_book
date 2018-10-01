@@ -12,19 +12,19 @@ public class Book {
 
    //参数
 
-//    @JsonProperty(value = "book_id")
+    @JsonProperty(value = "book_id")
     private int bookId;
 
-//    @JsonProperty(value = "book_name")
+    @JsonProperty(value = "book_name")
     private String bookName;
 
-//    @JsonProperty(value = "book_price")
+    @JsonProperty(value = "book_price")
     private double bookPrice;
 
-//    @JsonProperty(value = "date")
+    @JsonProperty(value = "date")
     private String date;
 
-//    @JsonProperty(value = "id")
+    @JsonProperty(value = "id")
     private int id;
 
    //get方法
