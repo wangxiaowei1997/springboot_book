@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzus.springbook.mapper.BookMapper">
+    <!-- 读取图书列表 -->
+    <select id="findBookInfo" resultMap="BookMap">
+        SELECT id,book_id,book_name,book_price,date
+        From  book
+    </select>
+    <resultMap id="BookMap" type="Book">
+        <result property="id" column="id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="bookName" column="book_name"/>
+        <result property="bookPrice" column="book_price"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+    <!--增加图书-->
+    <insert id="addBookInfo" >
+        INSERT INTO book (`book_id`, `book_name`, `book_price`, `date`)
+        VALUES (#{bookId}, #{bookName}, #{bookPrice}, #{date});
+    </insert>
+    
+    <!--删除图书-->
+    <delete id="deleteBookInfo" >
+        DELETE FROM book
+        WHERE book_id = #{bookId}
+    </delete>
+
+    <!--更新图书-->
+    <update id="updateBookInfo">
+        UPDATE  book
+        SET book_id = #{bookId},book_price = #{bookPrice},book_name = #{bookName},date = #{date}
+        WHERE id = #{id};
+    </update>
+</mapper>
