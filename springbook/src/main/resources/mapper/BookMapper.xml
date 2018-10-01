@@ -16,10 +16,9 @@
     </resultMap>
 
     <!--增加图书-->
-    <insert id="addBookInfo" >
-        INSERT INTO book (`book_id`, `book_name`, `book_price`, `date`)
-        VALUES (#{bookId}, #{bookName}, #{bookPrice}, #{date});
-    </insert>
+    <update id="addBookInfo" >
+         {call book_update(#{bookId}, #{bookName}, #{bookPrice}, #{date})}
+    </update>
     
     <!--删除图书-->
     <delete id="deleteBookInfo" >
