@@ -14,20 +14,12 @@ var myList = [
         "id": 2
     }
 ];
-var url3 ='http://127.0.0.1:8080/book/list';
+var baseurl = 'http://zzus.pw:8080/bookmag';
+var baseurl_ = 'http://127.0.0.1:8080';
+var url3 =baseurl+'/book/list';
 var ajax = new Ajax;
-ajax.ajax({
-    url: url3,
-    contentType:'application/json',
-    type:'get',
-    success: function(data){
-        var arr=eval(data);
-        myList = arr;
-        console.log(myList);
 
-    }
-});
-window.onload = function () {
+  function make () {
     var oTab = document.getElementById('book-table');
     var oTbody = oTab.tBodies[0];
     var book_s;
@@ -48,8 +40,13 @@ window.onload = function () {
         oTd3.innerHTML = myList[index].book_name;
         oTd4.innerHTML = myList[index].book_price;
         oTd5.innerHTML = myList[index].date;
-        oTd6.innerHTML = '<a onclick="deleteBook(\'+book_s+\')" ><span class="glyphicon glyphicon-edit"></span></a>';
-        oTd7.innerHTML = '<a href="../WEB-INF/views/editBook.html" onclick="" ><span class="glyphicon glyphicon-trash"></span></a>';
+        oTd6.innerHTML = '<a href="editBook.html?id='+myList[index].id
+                         +'&bookId='+myList[index].book_id
+                         +'&bookName='+myList[index].book_name
+                         +'&bookPrice='+myList[index].book_price
+                         +'&date='+myList[index].date
+                         +'" onclick="" ><span class="glyphicon glyphicon-edit"></span></a>';
+        oTd7.innerHTML = '<a onclick="deleteBook('+book_s+')" ><span class="glyphicon glyphicon-trash"></span></a>';
         oTr.appendChild(oTd1);
         oTr.appendChild(oTd2);
         oTr.appendChild(oTd3);
@@ -59,21 +56,27 @@ window.onload = function () {
         oTr.appendChild(oTd7);
     }
 };
-function addBook() {
-    var book_id = document.getElementById("book_id").value;
-    var book_name = document.getElementById("book_name").value;
-    var book_price = document.getElementById("book_price").value;
-    var date = document.getElementById("date").value;
+   function addBook() {
 
-    var book_json = {};
-    book_json["book_id"] = book_id;
-    book_json["book_name"] = book_name;
-    book_json["book_price"] = book_price;
-    book_json["date"] = date;
+       const book_id = document.getElementById("book_id").value;
+       const book_name = document.getElementById("book_name").value;
+       const book_price = document.getElementById("book_price").value;
+       const date = document.getElementById("date").value;
+       var book_json = {};
+       book_json["book_id"] = book_id;
+       book_json["book_name"] = book_name;
+       book_json["book_price"] = book_price;
+       book_json["date"] = date;
+       book_json["id"] = -10;
+       updateBook(book_json);
+   }
+
+function updateBook(book_json) {
+
     var book_jsonString = JSON.stringify(book_json);
     console.log(book_jsonString);
     var ajax = new Ajax();
-    url4 = 'http://127.0.0.1:8080/book/add';
+    url4 = baseurl+'/book/add';
     ajax.ajax({
         url: url4,
         contentType:'application/json',
@@ -82,7 +85,7 @@ function addBook() {
         success: function(data){
             var arr=eval(data);
             console.log(arr);
-            location.reload();
+            window.open("listBook.html");
         }
     });
 
@@ -95,7 +98,7 @@ function deleteBook(bookid) {
     book_json["book_id"] = bookid;
     var book_jsonString = JSON.stringify(book_json);
     var ajax = new Ajax();
-    url4 = 'http://127.0.0.1:8080/book/delete';
+    url4 = baseurl+'/book/delete';
     ajax.ajax({
         url: url4,
         contentType:'application/json',
@@ -110,9 +113,3 @@ function deleteBook(bookid) {
 
 }
 
-
-function updateBook(id) {
-    console.log(id);
-
-
-}

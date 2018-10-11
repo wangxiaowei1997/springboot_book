@@ -15,10 +15,13 @@
         <result property="date" column="date"/>
     </resultMap>
 
-    <!--增加图书-->
-    <update id="addBookInfo" >
-         {call book_update(#{bookId}, #{bookName}, #{bookPrice}, #{date})}
+    <update id="addBookInfo" statementType="CALLABLE" >
+         {call book_update(#{bookId}, #{bookName}, #{bookPrice}, #{date},#{id})}
     </update>
+    <!--<insert id="addBookInfo" >-->
+        <!--INSERT INTO book (`book_id`, `book_name`, `book_price`, `date`)-->
+        <!--VALUES (#{bookId}, #{bookName}, #{bookPrice}, #{date});-->
+    <!--</insert>-->
     
     <!--删除图书-->
     <delete id="deleteBookInfo" >

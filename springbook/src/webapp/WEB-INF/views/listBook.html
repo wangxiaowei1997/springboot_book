@@ -8,8 +8,23 @@
     <script src="../../js/jquery/2.0.0/jquery.min.js"></script>
     <script src="../../js/Ajax/Ajax.js"></script>
     <script src="../../js/listBook.js"></script>
+    <script>
+        ajax.ajax({
+            url: url3,
+            contentType:'application/json',
+            type:'get',
+            success: function(data){
+                var arr=eval(data);
+                myList = arr;
+                console.log(myList);
+                make();
+
+            }
+        });
+    </script>
 </head>
 <body>
+<div></div>
 <div class="listDIV">
     <table id="book-table" class="table table-striped table-bordered
      table-hover table-condensed" >
