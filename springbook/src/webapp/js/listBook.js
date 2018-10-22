@@ -14,8 +14,8 @@ var myList = [
         "id": 2
     }
 ];
-var baseurl = 'http://zzus.pw:8080/bookmag';
-var baseurl_ = 'http://127.0.0.1:8080';
+var baseurl_ = 'http://zzus.pw:8080/bookmag';
+var baseurl = 'http://127.0.0.1:8080';
 var url3 =baseurl+'/book/list';
 var ajax = new Ajax;
 
