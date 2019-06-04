@@ -1,0 +1,7 @@
+FROM hub.c.163.com/library/java:8-alpine
+
+MAINTAINER XXX XXX@imooc.com
+
+ADD target/*.jar book_mag.jar
+
+ENTRYPOINT ["java", "-jar", "/book_mag.jar"]

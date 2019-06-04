@@ -1,6 +1,7 @@
 package com.zzus.springbook.controller;
 
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.zzus.springbook.entity.Book;
 import com.zzus.springbook.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.Collection;
  * @author wangwei
  * @create 2018/9/18
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping(value="/book")
 public class BookController {
@@ -21,7 +22,7 @@ public class BookController {
     private static final String APPLICATION_JSON = "application/json";
     @Autowired
     private BookService bookService;
-
+    @CrossOrigin
     @RequestMapping(value = "/list",method = RequestMethod.GET,produces = APPLICATION_JSON)
     public Collection<Book> listBook() throws  Exception{
         return bookService.findBookInfo();

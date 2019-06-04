@@ -8,12 +8,19 @@
     <script src="../../js/jquery/2.0.0/jquery.min.js"></script>
     <script src="../../js/Ajax/Ajax.js"></script>
     <script src="../../js/listBook.js"></script>
+    <script src="../../js/doCokies.js"></script>
     <script>
-        ajax.ajax({
+        const  Token_s = docCookies.getItem('Token');
+        console.log(Token_s);
+            ajax.ajax({
             url: url3,
-            contentType:'application/json',
+            // contentType:'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Token',Token_s);
+            },
             type:'get',
             success: function(data){
+                console.log(data);
                 var arr=eval(data);
                 myList = arr;
                 console.log(myList);

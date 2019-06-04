@@ -14,10 +14,15 @@ var myList = [
         "id": 2
     }
 ];
-var baseurl_ = 'http://zzus.pw:8080/bookmag';
-var baseurl = 'http://127.0.0.1:8080';
-var url3 =baseurl+'/book/list';
-var ajax = new Ajax;
+const ip_a = '127.0.0.1';
+const ip_b = '192.168.43.164';
+const  ip_c = ip_a;
+const baseurl_A = 'http://'+ip_c+'/mag/';
+const baseurl_B = 'http://'+ip_c+'/maga/bookmag/';
+
+const baseurl = baseurl_A;
+const url3 =baseurl+'book/list';
+const ajax = new Ajax;
 
   function make () {
     var oTab = document.getElementById('book-table');

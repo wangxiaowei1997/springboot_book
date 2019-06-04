@@ -1,7 +1,7 @@
 package com.zzus.springbook.entity;
 
-import com.zzus.springbook.model.LoginDetail;
-import com.zzus.springbook.model.TokenDetail;
+import com.zzus.springbook.security.model.LoginDetail;
+import com.zzus.springbook.security.model.TokenDetail;
 
 public class User implements TokenDetail, LoginDetail {
 

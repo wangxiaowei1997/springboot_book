@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzus.springbook.mapper.BookMapper">
+    <select id="findBookInfo" statementType="CALLABLE" resultType="String">
+        select * from
+    </select>
+
+    <update id="normalInsertLog" statementType="CALLABLE">
+            insert into fnd_log(company_id, type, content, creation_date)
+            values (#{companyId}, #{type}, #{content}, now())
+    </update>
+</mapper>
