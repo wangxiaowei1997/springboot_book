@@ -19,11 +19,9 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
     private BookMapper mapper;
 
-//    public BookServiceImpl(BookMapper mapper) {
-//        this.mapper = mapper;
-//    }
 
 
     @Override
