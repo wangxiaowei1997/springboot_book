@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wangwei
@@ -40,7 +41,7 @@ public class BookServiceImpl implements BookService {
                 array.add(jsonObject);
             }
             String arrayString = array.toJSONString();
-            stringRedisTemplate.opsForValue().set("bookList",arrayString,60);
+            stringRedisTemplate.opsForValue().set("bookList",arrayString,600, TimeUnit.SECONDS);
             return bookCollection;
         }else {
             JSONArray array = JSONArray.parseArray(bookList);
