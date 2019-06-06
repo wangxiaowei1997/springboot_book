@@ -4,6 +4,17 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
+  redis:
+    host: 94.191.114.165
+    port: 6379
+    password: 123456
+    database: 0
+
+    pool:
+      max-active: 32
+      max-wait: 300
+      max-idle: 16
+      min-idle: 8
 
 mybatis:
   type-aliases-package: com.zzus.springbook.entity
@@ -13,3 +24,4 @@ token:
   header: Token
   secret: secret
   expiration: 604800
+

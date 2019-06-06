@@ -1,14 +1,19 @@
 package com.zzus.springbook.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zzus.springbook.entity.User;
 import com.zzus.springbook.mapper.UserMapper;
 import com.zzus.springbook.security.model.SecurityModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @version V1.0.0
@@ -21,6 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
     /**
      * 获取 userDetail
@@ -31,7 +38,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = this.userMapper.getUserFromDatabase(username);
+        String key = "username_"+username;
+        String userStr = stringRedisTemplate.opsForValue().get(key);
+        User user;
+        if (userStr != null) {
+             JSONObject jsonObject = JSONObject.parseObject(userStr);
+             user = JSON.parseObject(jsonObject.toJSONString(), User.class);
+        } else {
+             user = this.userMapper.getUserFromDatabase(username);
+             JSONObject jsonObject = new JSONObject();
+             jsonObject.put("username",user.getUsername());
+             jsonObject.put("password",user.getPassword());
+             jsonObject.put("authorities",user.getAuthorities());
+             jsonObject.put("lastPasswordChange",user.getLastPasswordChange());
+             jsonObject.put("enable",user.enable()?'1':'0');
+
+             System.out.println(jsonObject);
+             stringRedisTemplate.opsForValue().set(key,jsonObject.toJSONString(),60, TimeUnit.SECONDS);
+        }
 
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
