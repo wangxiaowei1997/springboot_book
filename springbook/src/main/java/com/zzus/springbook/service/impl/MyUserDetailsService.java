@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2017/8/2 16:43
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;

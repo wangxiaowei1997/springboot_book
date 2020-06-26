@@ -1,4 +1,4 @@
-package com.zzus.springbook.controller;
+package com.zzus.springbook.web.controller;
 
 
 import com.zzus.springbook.security.model.LoginDetail;
@@ -6,12 +6,12 @@ import com.zzus.springbook.security.model.ResultMap;
 import com.zzus.springbook.security.model.TokenDetail;
 import com.zzus.springbook.security.model.vo.Data;
 import com.zzus.springbook.security.model.vo.RequestLoginUser;
-import com.zzus.springbook.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zzus.springbook.service.impl.LoginService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
@@ -24,15 +24,12 @@ import javax.validation.Valid;
 @RestController
 public class LoginController {
 
-    private final LoginService loginService;
+    @Resource
+    private LoginService loginService;
 
     @Value("${token.header}")
     private String tokenHeader;
 
-    @Autowired
-    public LoginController(LoginService loginService) {
-        this.loginService = loginService;
-    }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResultMap login(@Valid @RequestBody RequestLoginUser requestLoginUser, BindingResult bindingResult){

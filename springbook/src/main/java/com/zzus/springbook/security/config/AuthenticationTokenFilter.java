@@ -1,13 +1,13 @@
 package com.zzus.springbook.security.config;
 
 
+import com.zzus.springbook.service.impl.MyUserDetailsService;
 import com.zzus.springbook.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
@@ -45,7 +45,7 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
      * 在当前类中将使用 UserDetailsService 来获取 userDetails 对象
      */
     @Autowired
-    private UserDetailsService userDetailsService;
+    private MyUserDetailsService userDetailsService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -61,7 +61,7 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // 用 UserDetailsService 从数据库中拿到用户的 UserDetails 类
             // UserDetails 类是 Spring Security 用于保存用户权限的实体类
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             // 检查用户带来的 token 是否有效
             // 包括 token 和 userDetails 中用户名是否一样， token 是否过期， token 生成时间是否在最后一次密码修改时间之前
             // 若是检查通过

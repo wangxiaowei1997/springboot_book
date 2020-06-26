@@ -8,10 +8,10 @@
     <meta name="keywords" content="">
     <link href="" rel="stylesheet">
     <!-- 这里要替换成你自己的BootStrap引入方式 -->
-    <link rel="stylesheet" href="../../css/bootstrap/3.3.6/bootstrap.min.css">
-    <script src="../../js/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../../js/bootstrap/3.3.6/bootstrap.min.js"></script>
-    <script src="../../js/Ajax/Ajax.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap/3.3.6/bootstrap.min.css">
+    <script src="../js/jquery/2.0.0/jquery.min.js"></script>
+    <script src="../js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src="../js/Ajax/Ajax.min.js"></script>
     <script>
        function login() {
            const username = document.getElementById("user_name").value;
@@ -21,11 +21,8 @@
            login_json["password"]=password;
            login_json = JSON.stringify(login_json);
            console.log(login_json);
-           const ip_a = '127.0.0.1';
-           const ip_b = '192.168.43.164';
-           const  ip_c = ip_a;
-           const login_url_A = 'http://'+ip_c+'/mag/login';
-           const login_url_B = 'http://'+ip_c+'/maga/bookmag/login';
+           const ip_a = '127.0.0.1:8080';
+           const login_url_A = 'http://'+ip_a+'/login';
 
            const  ajax = new Ajax;
            ajax.ajax({

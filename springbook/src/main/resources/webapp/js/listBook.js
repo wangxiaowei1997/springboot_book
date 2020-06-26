@@ -14,13 +14,8 @@ var myList = [
         "id": 2
     }
 ];
-const ip_a = '127.0.0.1';
-const ip_b = '192.168.43.164';
-const  ip_c = ip_a;
-const baseurl_A = 'http://'+ip_c+'/mag/';
-const baseurl_B = 'http://'+ip_c+'/maga/bookmag/';
-
-const baseurl = baseurl_A;
+const ip_a = '127.0.0.1:8080';
+const baseurl = 'http://'+ip_a+'/';
 const url3 =baseurl+'book/list';
 const ajax = new Ajax;
 

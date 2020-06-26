@@ -6,12 +6,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zzus.springbook.entity.Book;
 import com.zzus.springbook.mapper.BookMapper;
-import com.zzus.springbook.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
@@ -21,16 +20,19 @@ import java.util.concurrent.TimeUnit;
  * @date 2018/9/23
  */
 @Service
-public class BookServiceImpl implements BookService {
-    @Autowired
+public class BookService {
+    @Resource
     private StringRedisTemplate stringRedisTemplate;
 
-    @Autowired
+    @Resource
     private BookMapper mapper;
 
 
-
-    @Override
+    /**
+     * 列出图书列表
+     * @return 图书实体类
+     * @throws Exception
+     */
     public Collection<Book> findBookInfo() throws Exception {
         String bookList = stringRedisTemplate.opsForValue().get("bookList");
         if (bookList == null) {
@@ -55,18 +57,30 @@ public class BookServiceImpl implements BookService {
         }
     }
 
-    @Override
+    /**
+     * 添加图书
+     * @throws Exception
+     * @param book
+     */
     public void addBookInfo(Book book) throws Exception {
 
         mapper.addBookInfo(book);
     }
 
-    @Override
+    /**
+     * 删除图书
+     * @throws Exception
+     * @param book
+     */
     public void deleteBookInfo(Book book) throws Exception {
         mapper.deleteBookInfo(book);
     }
 
-    @Override
+    /**
+     * 更新图书信息
+     * @param book
+     * @throws Exception
+     */
     public void updateBookInfo(Book book) throws  Exception{
 
         mapper.updateBookInfo(book);
