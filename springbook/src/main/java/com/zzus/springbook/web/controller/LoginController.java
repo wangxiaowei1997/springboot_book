@@ -6,7 +6,7 @@ import com.zzus.springbook.security.model.ResultMap;
 import com.zzus.springbook.security.model.TokenDetail;
 import com.zzus.springbook.security.model.vo.Data;
 import com.zzus.springbook.security.model.vo.RequestLoginUser;
-import com.zzus.springbook.service.impl.LoginService;
+import com.zzus.springbook.service.LoginService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

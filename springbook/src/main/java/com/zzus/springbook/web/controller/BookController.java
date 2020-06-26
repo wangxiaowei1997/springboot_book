@@ -2,8 +2,7 @@ package com.zzus.springbook.web.controller;
 
 
 import com.zzus.springbook.entity.Book;
-import com.zzus.springbook.service.impl.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zzus.springbook.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

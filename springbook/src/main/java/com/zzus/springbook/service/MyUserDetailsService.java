@@ -1,4 +1,4 @@
-package com.zzus.springbook.service.impl;
+package com.zzus.springbook.service;
 
 
 import com.alibaba.fastjson.JSON;

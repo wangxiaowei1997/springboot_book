@@ -1,7 +1,7 @@
 package com.zzus.springbook.security.config;
 
 
-import com.zzus.springbook.service.impl.MyUserDetailsService;
+import com.zzus.springbook.service.MyUserDetailsService;
 import com.zzus.springbook.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
