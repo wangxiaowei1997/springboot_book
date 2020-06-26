@@ -3,6 +3,7 @@ package com.zzus.springbook.web.controller;
 
 import com.zzus.springbook.entity.Book;
 import com.zzus.springbook.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,7 +14,7 @@ import java.util.Collection;
  * @author wangwei
  * @create 2018/9/18
  */
-
+@Slf4j
 @RestController
 @RequestMapping(value="/book")
 public class BookController {
@@ -29,8 +30,9 @@ public class BookController {
     }
 
     @PostMapping(value = "/add")
-    public void addBook(@RequestBody Book input) throws Exception{
-        bookService.addBookInfo(input);
+    public void addBook(@RequestBody Book book) throws Exception{
+        log.info("新增书籍book={}",book);
+        bookService.addBookInfo(book);
     }
 
     @PostMapping(value = "/delete")

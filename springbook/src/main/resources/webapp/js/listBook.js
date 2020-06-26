@@ -61,12 +61,10 @@ const ajax = new Ajax;
        const book_id = document.getElementById("book_id").value;
        const book_name = document.getElementById("book_name").value;
        const book_price = document.getElementById("book_price").value;
-       const date = document.getElementById("date").value;
        var book_json = {};
        book_json["book_id"] = book_id;
        book_json["book_name"] = book_name;
        book_json["book_price"] = book_price;
-       book_json["date"] = date;
        book_json["id"] = -10;
        updateBook(book_json);
    }
