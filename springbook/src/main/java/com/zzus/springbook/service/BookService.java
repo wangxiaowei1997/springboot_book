@@ -1,12 +1,12 @@
 package com.zzus.springbook.service;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zzus.springbook.entity.Book;
 import com.zzus.springbook.mapper.BookMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zzus.springbook.utils.BeanCopyUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @author wangwei
  * @date 2018/9/23
  */
+@Slf4j
 @Service
 public class BookService {
     @Resource
@@ -34,27 +35,24 @@ public class BookService {
      * @throws Exception
      */
     public Collection<Book> findBookInfo() throws Exception {
+        Collection<Book> bookCollection = new ArrayList<>();
         String bookList = stringRedisTemplate.opsForValue().get(BOOK_LIST_KEY);
+        bookList =null;
         if (bookList == null) {
-            Collection<Book> bookCollection = mapper.findBookInfo();
+            bookCollection = mapper.findBookInfo();
             JSONArray array = new JSONArray();
             for(Object o:bookCollection){
-                JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(o));
+                JSONObject jsonObject = BeanCopyUtils.map(o,JSONObject.class);
                 array.add(jsonObject);
             }
             String arrayString = array.toJSONString();
-            stringRedisTemplate.opsForValue().set(BOOK_LIST_KEY,arrayString,600, TimeUnit.SECONDS);
-            return bookCollection;
+            stringRedisTemplate.opsForValue().set(BOOK_LIST_KEY,arrayString,120, TimeUnit.SECONDS);
         }else {
             JSONArray array = JSONArray.parseArray(bookList);
-            Collection<Book> bookCollection = new ArrayList<>();
-            for(Object o:array){
-                JSONObject jsonObject =(JSONObject)o;
-                Book book = JSON.parseObject(jsonObject.toJSONString(),Book.class);
-                bookCollection.add(book);
-            }
-            return bookCollection;
+            bookCollection = BeanCopyUtils.mapList(array,Book.class);
         }
+        log.info("bookCollection={}",bookCollection);
+        return bookCollection;
     }
 
     /**
@@ -89,9 +87,10 @@ public class BookService {
     }
 
     /**
-     * 删除特定的键值对
+     * 缓存失效
      */
     private void deleteRedisKey(String key){
+        log.info("缓存失效 key={}",key);
         stringRedisTemplate.delete(BOOK_LIST_KEY);
     }
 }

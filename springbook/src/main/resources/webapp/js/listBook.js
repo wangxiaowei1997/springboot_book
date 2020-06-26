@@ -82,6 +82,9 @@ function updateBook(book_json) {
         contentType:'application/json',
         type:'post',
         data:book_jsonString,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Token',Token_s);
+        },
         success: function(data){
             var arr=eval(data);
             console.log(arr);
@@ -104,6 +107,9 @@ function deleteBook(bookid) {
         contentType:'application/json',
         type:'post',
         data:book_jsonString,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Token',Token_s);
+        },
         success: function(data){
             var arr=eval(data);
             console.log(arr);

@@ -26,15 +26,13 @@ function makeDefault() {
 
 
 function update() {
-     if(document.getElementById("book_id").value != 0){book_id = document.getElementById("book_id").value;}
+
      if(document.getElementById("book_name").value != 0){book_name = document.getElementById("book_name").value;}
      if(document.getElementById("book_price").value != 0){book_price = document.getElementById("book_price").value;}
-     if(document.getElementById("date").value !=0){date = document.getElementById("date").value;}
      const book_json = {};
      book_json["book_id"] = book_id;
      book_json["book_name"] = book_name;
      book_json["book_price"] = book_price;
-     book_json["date"] = date;
      book_json["id"] = id;
 
      updateBook(book_json);

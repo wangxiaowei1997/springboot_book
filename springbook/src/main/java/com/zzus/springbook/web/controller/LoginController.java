@@ -51,7 +51,7 @@ public class LoginController {
         if (loginDetail == null){
             return new ResultMap().fail("434").message("账号不存在！").data("");
         }else {
-            if (loginDetail.enable() == false){
+            if (!loginDetail.enable()){
                 return new ResultMap().fail("452").message("账号在黑名单中").data("");
             }
             if (!loginDetail.getPassword().equals(requestLoginUser.getPassword())){

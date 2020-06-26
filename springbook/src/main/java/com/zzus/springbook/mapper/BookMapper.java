@@ -1,10 +1,10 @@
 package com.zzus.springbook.mapper;
 
 import com.zzus.springbook.entity.Book;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+
 @Repository
 public interface BookMapper {
     public Collection<Book> findBookInfo();

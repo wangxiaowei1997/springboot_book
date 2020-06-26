@@ -32,7 +32,7 @@
     <!--更新图书-->
     <update id="updateBookInfo">
         UPDATE  book
-        SET book_id = #{bookId},book_price = #{bookPrice},book_name = #{bookName},date = #{date}
+        SET book_id = #{bookId},book_price = #{bookPrice},book_name = #{bookName}
         WHERE id = #{id};
     </update>
 </mapper>
