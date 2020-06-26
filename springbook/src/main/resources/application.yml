@@ -2,14 +2,14 @@ spring:
   resources:
     static-locations: classpath:webapp/
   datasource:
-    url: jdbc:mysql://111.229.141.79:3306/book-system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://{host}:3306/book-system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: 123456
+    username: {username}
+    password: {password}
   redis:
-    host: 111.229.141.79
-    port: 6379
-    password: 123456
+    host: {host}
+    port: {port}
+    password: {username}
     database: 0
 
     pool:
