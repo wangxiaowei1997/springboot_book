@@ -74,7 +74,10 @@ function updateBook(book_json) {
     var book_jsonString = JSON.stringify(book_json);
     console.log(book_jsonString);
     var ajax = new Ajax();
-    url4 = baseurl+'/book/add';
+    url4 = baseurl+'/book/update';
+    if(book_json["id"] < 0){
+        url4 = baseurl+'/book/add';
+    }
     ajax.ajax({
         url: url4,
         contentType:'application/json',
@@ -86,7 +89,14 @@ function updateBook(book_json) {
         success: function(data){
             var arr=eval(data);
             console.log(arr);
-            window.open("listBook.html");
+            location.reload();
+            //根据修改和添加两种情况分别做跳转或者刷新
+            if(book_json["id"] < 0){
+                location.reload();
+            }else {
+                window.close();
+                window.open("listBook.html");
+            }
         }
     });
 
