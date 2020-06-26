@@ -45,7 +45,7 @@ const ajax = new Ajax;
                          +'&bookName='+myList[index].book_name
                          +'&bookPrice='+myList[index].book_price
                          +'&date='+myList[index].date
-                         +'" onclick="" ><span class="glyphicon glyphicon-edit"></span></a>';
+                         +'" onclick="" target="_blank" ><span class="glyphicon glyphicon-edit"></span></a>';
         oTd7.innerHTML = '<a onclick="deleteBook('+book_s+')" ><span class="glyphicon glyphicon-trash"></span></a>';
         oTr.appendChild(oTd1);
         oTr.appendChild(oTd2);
