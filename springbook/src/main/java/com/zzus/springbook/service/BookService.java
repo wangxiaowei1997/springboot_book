@@ -27,14 +27,14 @@ public class BookService {
     @Resource
     private BookMapper mapper;
 
-
+    private final String BOOK_LIST_KEY = "bookList";
     /**
      * 列出图书列表
      * @return 图书实体类
      * @throws Exception
      */
     public Collection<Book> findBookInfo() throws Exception {
-        String bookList = stringRedisTemplate.opsForValue().get("bookList");
+        String bookList = stringRedisTemplate.opsForValue().get(BOOK_LIST_KEY);
         if (bookList == null) {
             Collection<Book> bookCollection = mapper.findBookInfo();
             JSONArray array = new JSONArray();
@@ -43,7 +43,7 @@ public class BookService {
                 array.add(jsonObject);
             }
             String arrayString = array.toJSONString();
-            stringRedisTemplate.opsForValue().set("bookList",arrayString,600, TimeUnit.SECONDS);
+            stringRedisTemplate.opsForValue().set(BOOK_LIST_KEY,arrayString,600, TimeUnit.SECONDS);
             return bookCollection;
         }else {
             JSONArray array = JSONArray.parseArray(bookList);
@@ -63,7 +63,7 @@ public class BookService {
      * @param book
      */
     public void addBookInfo(Book book) throws Exception {
-
+        deleteRedisKey(BOOK_LIST_KEY);
         mapper.addBookInfo(book);
     }
 
@@ -73,6 +73,7 @@ public class BookService {
      * @param book
      */
     public void deleteBookInfo(Book book) throws Exception {
+        deleteRedisKey(BOOK_LIST_KEY);
         mapper.deleteBookInfo(book);
     }
 
@@ -82,8 +83,15 @@ public class BookService {
      * @throws Exception
      */
     public void updateBookInfo(Book book) throws  Exception{
-
+        deleteRedisKey(BOOK_LIST_KEY);
         mapper.updateBookInfo(book);
 
+    }
+
+    /**
+     * 删除特定的键值对
+     */
+    private void deleteRedisKey(String key){
+        stringRedisTemplate.delete(BOOK_LIST_KEY);
     }
 }
