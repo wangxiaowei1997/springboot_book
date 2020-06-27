@@ -50,4 +50,12 @@
         WHERE
         id = #{id};
     </update>
+
+    <select id="getMaxBookId" resultType="java.lang.Integer">
+        select
+        book_id
+        from book
+        order by book_id desc
+        limit 1
+    </select>
 </mapper>

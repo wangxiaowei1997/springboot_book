@@ -32,18 +32,23 @@ public class BookController {
     }
 
     @PostMapping(value = "/add")
-    public void addBook(@RequestBody Book book) throws Exception{
+    public RespDTO addBook(@RequestBody Book book) throws Exception{
         log.info("新增书籍book={}",book);
         bookService.addBookInfo(book);
+        return RespDTO.success("新增书籍成功");
     }
 
     @PostMapping(value = "/delete")
-    public void deleteBook(@RequestBody Book book ) throws Exception{
+    public RespDTO deleteBook(@RequestBody Book book ) throws Exception{
+        log.info("删除书籍book={}",book);
         bookService.deleteBookInfo(book);
+        return RespDTO.success("删除书籍成功");
     }
 
     @PostMapping(value = "/update")
-    public void updateBook(@RequestBody Book book) throws Exception{
+    public RespDTO updateBook(@RequestBody Book book) throws Exception{
+        log.info("更新书籍book={}",book);
         bookService.updateBookInfo(book);
+        return RespDTO.success("更新书籍成功");
     }
 }

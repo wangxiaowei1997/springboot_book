@@ -59,6 +59,7 @@ public class BookService {
      * @param book
      */
     public void addBookInfo(Book book) throws Exception {
+        book.setBookId(mapper.getMaxBookId()+1);
         deleteRedisKey(BOOK_LIST_KEY);
         mapper.addBookInfo(book);
     }

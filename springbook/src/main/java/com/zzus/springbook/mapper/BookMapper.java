@@ -14,4 +14,7 @@ public interface BookMapper {
     public void  deleteBookInfo(Book book);
 
     public void  updateBookInfo(Book book);
+
+    //查询最大的bookId
+    int getMaxBookId();
 }
