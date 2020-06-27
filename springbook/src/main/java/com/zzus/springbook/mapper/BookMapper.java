@@ -3,11 +3,11 @@ package com.zzus.springbook.mapper;
 import com.zzus.springbook.bean.db.Book;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
+import java.util.List;
 
 @Repository
 public interface BookMapper {
-    public Collection<Book> findBookInfo();
+    public List<Book> findBookInfo();
 
     public void addBookInfo(Book book);
 

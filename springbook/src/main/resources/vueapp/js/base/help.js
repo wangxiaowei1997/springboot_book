@@ -6,7 +6,7 @@ Vue.prototype.setCookie = function (name, value,day) {
     var Days = day || 365;    //这里设置天数
     var exp = new Date();
     exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    document.cookie = name + "=" + escape(value) + ";domain=127.0.0.1"+ ";expires=" + exp.toGMTString();
     // document.cookie = name + "="+ escape (value) + ";domain=(这里可以放入指定使用的域名);expires=" + exp.toGMTString();
 };
 

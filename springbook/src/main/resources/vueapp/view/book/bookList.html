@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+    <link rel="stylesheet" href="/css/base/base.css">
+    <link rel="stylesheet" href="/css/base/element-ui.css">
+</head>
+<body>
+<div v-cloak id="App" style="margin: 0 10px;" v-loading="loading">
+    <el-row type="flex" justify="center">
+        <el-col :span="100">
+					<span style="font-size: 32px; color: #304157; font-weight: bold;">
+						图书列表
+					</span>
+        </el-col>
+    </el-row>
+    <el-table :data="bookList" align="center" >
+        <el-table-column label="书号" width="180">
+            <template slot-scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.bookId }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="书名" width="180">
+            <template slot-scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.bookName }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="价格" width="180">
+            <template slot-scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.bookPrice }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="更新日期" width="180">
+            <template slot-scope="scope">
+                <span style="margin-left: 10px">{{ scope.row.date }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column  label="操作" width="100">
+            <template slot-scope="scope">
+                <el-button @click="editBook(scope.row)" type="text" size="small">编辑</el-button>
+                <el-button type="text" size="small">删除</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>
+
+<script src="/js/base/vue.js"></script>
+<script src="/js/base/element-ui.js"></script>
+<script src="/js/base/axios.js"></script>
+<script src="/js/base/util.js"></script>
+<script src="/js/base/help.js"></script>
+<script src="/js/page/book/bookList.js"></script>
+</body>
+</html>

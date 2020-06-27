@@ -11,8 +11,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,14 +33,13 @@ public class BookService {
      * @return 图书实体类
      * @throws Exception
      */
-    public Collection<Book> findBookInfo() throws Exception {
-        Collection<Book> bookCollection = new ArrayList<>();
+    public List<Book> findBookInfo() throws Exception {
+        List<Book> list;
         String bookList = stringRedisTemplate.opsForValue().get(BOOK_LIST_KEY);
-        bookList =null;
         if (bookList == null) {
-            bookCollection = mapper.findBookInfo();
+            list = mapper.findBookInfo();
             JSONArray array = new JSONArray();
-            for(Object o:bookCollection){
+            for(Object o:list){
                 JSONObject jsonObject = BeanCopyUtils.map(o,JSONObject.class);
                 array.add(jsonObject);
             }
@@ -49,10 +47,10 @@ public class BookService {
             stringRedisTemplate.opsForValue().set(BOOK_LIST_KEY,arrayString,120, TimeUnit.SECONDS);
         }else {
             JSONArray array = JSONArray.parseArray(bookList);
-            bookCollection = BeanCopyUtils.mapList(array,Book.class);
+            list = BeanCopyUtils.mapList(array,Book.class);
         }
-        log.info("bookCollection={}",bookCollection);
-        return bookCollection;
+        log.info("list={}",list);
+        return list;
     }
 
     /**

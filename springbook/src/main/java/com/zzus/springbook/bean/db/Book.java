@@ -14,20 +14,15 @@ import java.util.Date;
 @Data
 public class Book {
 
-    @JsonProperty(value = "book_id")
     private int bookId;
 
-    @JsonProperty(value = "book_name")
     private String bookName;
 
-    @JsonProperty(value = "book_price")
     private double bookPrice;
 
-    @JsonProperty(value = "date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+16")
     private Date date;
 
-    @JsonProperty(value = "id")
     private int id;
 
 }

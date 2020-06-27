@@ -2,12 +2,13 @@ package com.zzus.springbook.web.controller;
 
 
 import com.zzus.springbook.bean.db.Book;
+import com.zzus.springbook.bean.dto.RespDTO;
 import com.zzus.springbook.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collection;
+import java.util.List;
 
 
 /**
@@ -25,8 +26,9 @@ public class BookController {
 
 
     @GetMapping(value = "/list")
-    public Collection<Book> listBook() throws  Exception{
-        return bookService.findBookInfo();
+    public RespDTO<List<Book>> listBook() throws  Exception{
+        List<Book> bookList = bookService.findBookInfo();
+        return RespDTO.success(bookList);
     }
 
     @PostMapping(value = "/add")
