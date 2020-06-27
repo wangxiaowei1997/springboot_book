@@ -14,6 +14,7 @@ new Vue({
                 id:''
             },
             editBookDialogVisible:false,
+            deleteConfirmDialogVisible:false,
             title:''
         }
     },
@@ -63,7 +64,25 @@ new Vue({
         closeEditBookDialog(){
             this.tempBook = '';
             this.editBookDialogVisible = false;
+        },
+        deleteBookDialog(book){
+            this.tempBook = JSON.parse(JSON.stringify(book));
+            this.title = '删除书籍';
+            this.deleteConfirmDialogVisible = true;
         }
+        ,
+        deleteBookItem(){
+            const data = this.tempBook;
+            deleteBook(data).then(response =>{
+                console.log('删除成功');
+                this.deleteConfirmDialogVisible = false;
+                this.queryBookList();
+            })
+        },
+        closeDeleteBookDialog(){
+            this.tempBook = '';
+            this.deleteConfirmDialogVisible = false;
+        },
     }
 });
 

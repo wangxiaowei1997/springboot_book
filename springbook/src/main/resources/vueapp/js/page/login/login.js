@@ -21,6 +21,7 @@ new Vue({
                 let token = response.data.token;
                 console.log(token);
                 this.setCookie("token",token,1)
+                window.location.href = "/view/book/bookList.html";
             })
         }
     }

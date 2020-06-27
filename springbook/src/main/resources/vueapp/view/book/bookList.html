@@ -15,8 +15,9 @@
 					</span>
         </el-col>
     </el-row>
-    <el-row>
-        <el-col :span="100">
+    <el-row type="flex" justify="left">
+        <el-col :span="24"></el-col>
+        <el-col :span="12">
             <el-button  type="warning" size="mini" @click="addNewBook()">新增书籍</el-button>
         </el-col>
     </el-row>
@@ -44,7 +45,7 @@
         <el-table-column  label="操作" width="100">
             <template slot-scope="scope">
                 <el-button @click="editBook(scope.row)" type="text" size="small">编辑</el-button>
-                <el-button type="text" size="small">删除</el-button>
+                <el-button @click="deleteBookDialog(scope.row)" type="text" size="small">删除</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -71,6 +72,20 @@
                     <el-form-item>
                         <el-button type="primary" @click="saveBook()">确认</el-button>
                         <el-button @click="closeEditBookDialog()">取消</el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </el-form>
+    </el-dialog>
+
+    <el-dialog :title="title" width="35%" :visible.sync="deleteConfirmDialogVisible" @close="closeDeleteBookDialog()">
+        <el-form ref="form"  label-width="40px" >
+            <span>确认删除《{{tempBook.bookName}}》吗？</span>
+            <el-row type="flex" justify="center">
+                <el-col :span="8">
+                    <el-form-item>
+                        <el-button type="primary" @click="deleteBookItem()">确认</el-button>
+                        <el-button @click="closeDeleteBookDialog()">取消</el-button>
                     </el-form-item>
                 </el-col>
             </el-row>
