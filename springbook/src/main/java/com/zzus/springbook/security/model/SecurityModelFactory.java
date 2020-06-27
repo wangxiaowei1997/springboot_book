@@ -1,7 +1,7 @@
 package com.zzus.springbook.security.model;
 
 
-import com.zzus.springbook.entity.User;
+import com.zzus.springbook.bean.db.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 

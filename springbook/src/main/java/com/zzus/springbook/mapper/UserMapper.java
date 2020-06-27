@@ -1,6 +1,6 @@
 package com.zzus.springbook.mapper;
 
-import com.zzus.springbook.entity.User;
+import com.zzus.springbook.bean.db.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

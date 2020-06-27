@@ -1,6 +1,6 @@
 package com.zzus.springbook.mapper;
 
-import com.zzus.springbook.entity.Book;
+import com.zzus.springbook.bean.db.Book;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;

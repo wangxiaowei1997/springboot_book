@@ -19,7 +19,7 @@
         `user`.username = #{username}
     </select>
 
-    <resultMap id="getUserFromDatabaseMap" type="com.zzus.springbook.entity.User">
+    <resultMap id="getUserFromDatabaseMap" type="com.zzus.springbook.bean.db.User">
         <id column="username" property="username"/>
         <result column="password" property="password"/>
         <result column="last_password_change" property="lastPasswordChange"/>

@@ -3,7 +3,7 @@ package com.zzus.springbook.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.zzus.springbook.entity.Book;
+import com.zzus.springbook.bean.db.Book;
 import com.zzus.springbook.mapper.BookMapper;
 import com.zzus.springbook.utils.BeanCopyUtils;
 import lombok.extern.slf4j.Slf4j;

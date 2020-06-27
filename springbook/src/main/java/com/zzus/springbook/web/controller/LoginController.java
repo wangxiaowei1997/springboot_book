@@ -1,6 +1,8 @@
 package com.zzus.springbook.web.controller;
 
 
+import com.zzus.springbook.bean.dto.LoginDTO;
+import com.zzus.springbook.bean.dto.RespDTO;
 import com.zzus.springbook.security.model.LoginDetail;
 import com.zzus.springbook.security.model.ResultMap;
 import com.zzus.springbook.security.model.TokenDetail;
@@ -32,30 +34,32 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResultMap login(@Valid @RequestBody RequestLoginUser requestLoginUser, BindingResult bindingResult){
+    public RespDTO login(@Valid @RequestBody RequestLoginUser requestLoginUser, BindingResult bindingResult){
         // 检查有没有输入用户名密码和格式对不对
         if (bindingResult.hasErrors()){
-            return new ResultMap().fail("400").message("缺少参数或者参数格式不对").data("");
+            return RespDTO.fail("缺少参数或者参数格式不对！");
         }
 
         LoginDetail loginDetail = loginService.getLoginDetail(requestLoginUser.getUsername());
-        ResultMap ifLoginFail = checkAccount(requestLoginUser, loginDetail);
+        RespDTO ifLoginFail = checkAccount(requestLoginUser, loginDetail);
         if (ifLoginFail != null){
             return ifLoginFail;
         }
-
-        return new ResultMap().success().message("").data(new Data().addObj(tokenHeader, loginService.generateToken((TokenDetail) loginDetail)));
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setToken(loginService.generateToken((TokenDetail) loginDetail));
+        return RespDTO.success(loginDTO);
     }
 
-    private ResultMap checkAccount(RequestLoginUser requestLoginUser, LoginDetail loginDetail){
+    private RespDTO checkAccount(RequestLoginUser requestLoginUser, LoginDetail loginDetail){
         if (loginDetail == null){
-            return new ResultMap().fail("434").message("账号不存在！").data("");
+            return RespDTO.fail("账号不存在！");
         }else {
             if (!loginDetail.enable()){
-                return new ResultMap().fail("452").message("账号在黑名单中").data("");
+                return RespDTO.fail("账号在黑名单中！");
+
             }
             if (!loginDetail.getPassword().equals(requestLoginUser.getPassword())){
-                return new ResultMap().fail("438").message("密码错误！").data("");
+                return RespDTO.fail("密码错误！");
             }
         }
         return null;

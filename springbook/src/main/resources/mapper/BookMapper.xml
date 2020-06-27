@@ -12,7 +12,7 @@
         ,`date`
         From  book
     </select>
-    <resultMap id="BookMap" type="Book">
+    <resultMap id="BookMap" type="com.zzus.springbook.bean.db.Book">
         <result property="id" column="id"/>
         <result property="bookId" column="book_id"/>
         <result property="bookName" column="book_name"/>

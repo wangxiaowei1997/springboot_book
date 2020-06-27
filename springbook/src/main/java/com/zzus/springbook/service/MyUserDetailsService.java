@@ -3,7 +3,7 @@ package com.zzus.springbook.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.zzus.springbook.entity.User;
+import com.zzus.springbook.bean.db.User;
 import com.zzus.springbook.mapper.UserMapper;
 import com.zzus.springbook.security.model.SecurityModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;

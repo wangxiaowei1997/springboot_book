@@ -1,4 +1,4 @@
-package com.zzus.springbook.entity;
+package com.zzus.springbook.bean.db;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

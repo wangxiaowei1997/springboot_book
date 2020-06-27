@@ -1,4 +1,4 @@
-package com.zzus.springbook.entity;
+package com.zzus.springbook.bean.db;
 
 import com.zzus.springbook.security.model.LoginDetail;
 import com.zzus.springbook.security.model.TokenDetail;

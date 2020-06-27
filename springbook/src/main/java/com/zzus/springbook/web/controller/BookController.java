@@ -1,7 +1,7 @@
 package com.zzus.springbook.web.controller;
 
 
-import com.zzus.springbook.entity.Book;
+import com.zzus.springbook.bean.db.Book;
 import com.zzus.springbook.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
