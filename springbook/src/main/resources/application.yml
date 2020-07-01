@@ -1,6 +1,6 @@
 spring:
   resources:
-    static-locations: classpath:webapp/
+    static-locations: classpath:vueapp/
   datasource:
     url: jdbc:mysql://{host}:3306/book-system?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.jdbc.Driver
@@ -26,4 +26,5 @@ token:
   header: token
   secret: secret
   expiration: 604800
-
+server:
+  port: 9999
